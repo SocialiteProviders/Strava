@@ -8,13 +8,6 @@ use Laravel\Socialite\Two\User;
 class Provider extends AbstractProvider implements ProviderInterface
 {
     /**
-     * The scopes being requested.
-     *
-     * @var array
-     */
-    protected $scopes = [];
-
-    /**
      * {@inheritdoc}
      */
     protected function getAuthUrl($state)
