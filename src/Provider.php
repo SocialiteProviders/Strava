@@ -12,7 +12,9 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://www.strava.com/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase(
+            'https://www.strava.com/oauth/authorize', $state
+        );
     }
 
     /**
@@ -28,7 +30,8 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get('https://www.strava.com/api/v3/athlete', [
+        $response = $this->getHttpClient()->get(
+            'https://www.strava.com/api/v3/athlete', [
             'headers' => [
                 'Authorization' => 'Bearer '.$token,
             ],
@@ -43,11 +46,9 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id'       => $user['id'],
-            'nickname' => null,
-            'name'     => $user['firstname'].' '.$user['lastname'],
-            'email'    => $user['email'],
-            'avatar'   => $user['profile_medium'],
+            'id' => $user['id'], 'nickname' => null,
+            'name' => $user['firstname'].' '.$user['lastname'],
+            'email' => $user['email'], 'avatar' => $user['profile_medium'],
         ]);
     }
 
@@ -56,6 +57,8 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenFields($code)
     {
-        return array_merge(parent::getTokenFields($code), ['grant_type' => 'authorization_code']);
+        return array_merge(parent::getTokenFields($code), [
+            'grant_type' => 'authorization_code',
+        ]);
     }
 }
