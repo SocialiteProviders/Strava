@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialiteProviders\Strava;
 
 use Laravel\Socialite\Two\AbstractProvider;
@@ -60,5 +61,19 @@ class Provider extends AbstractProvider implements ProviderInterface
         return array_merge(parent::getTokenFields($code), [
             'grant_type' => 'authorization_code',
         ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getCodeFields($state)
+    {
+        $codeFields = parent::getCodeFields($state);
+
+        if (count($this->scopes) === 0) {
+            unset($codeFields['scope']);
+        }
+
+        return $codeFields;
     }
 }

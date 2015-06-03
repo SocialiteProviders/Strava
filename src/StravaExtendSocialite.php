@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialiteProviders\Strava;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
