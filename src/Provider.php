@@ -61,4 +61,18 @@ class Provider extends AbstractProvider implements ProviderInterface
             'grant_type' => 'authorization_code',
         ]);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getCodeFields($state)
+    {
+        $codeFields = parent::getCodeFields($state);
+
+        if(count($this->scopes) === 0) {
+            unset($codeFields['scope']);
+        }
+
+        return $codeFields;
+    }
 }
