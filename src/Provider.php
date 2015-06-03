@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialiteProviders\Strava;
 
 use Laravel\Socialite\Two\AbstractProvider;
@@ -69,7 +70,7 @@ class Provider extends AbstractProvider implements ProviderInterface
     {
         $codeFields = parent::getCodeFields($state);
 
-        if(count($this->scopes) === 0) {
+        if (count($this->scopes) === 0) {
             unset($codeFields['scope']);
         }
 
