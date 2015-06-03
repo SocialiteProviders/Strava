@@ -66,7 +66,7 @@ class Provider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getCodeFields($state)
+    protected function getCodeFields($state = null)
     {
         $codeFields = parent::getCodeFields($state);
 
